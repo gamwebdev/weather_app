@@ -34,7 +34,7 @@ app.post('/webhook/', function(req, res) {
 		}
 		x++;
 	}else{
-		let city = Toronto;
+		let city = "Toronto";
 		let temp = getTemperature(city);
 
 		let messaging_events = req.body.entry[0].messaging
