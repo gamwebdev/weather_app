@@ -36,7 +36,7 @@ app.post('/webhook/', function(req, res) {
 		}
 		
 	}else{
-		let city = "Toronto";
+		let city = "Paris";
 		let temp = getTemperature(city);
 		temp.then(function(results){
 			temperature = results;
