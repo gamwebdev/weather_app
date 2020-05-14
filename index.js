@@ -21,11 +21,8 @@ app.get('/webhook/', function(req, res) {
 let token = "EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
 
 app.get('/webhook/', function(req, res) {
-	let messaging_events = req.body.entry[0].messaging
-	let event = messaging_events[i]
-	let sender = event.sender.id
 	let text = "Enter Your name:";
-	sendTextAtBeg(sender, text);
+	sendTextAtBeg(text);
 	res.sendStatus(200);
 })
 
@@ -42,14 +39,14 @@ app.post('/webhook/', function(req, res) {
 	res.sendStatus(200)
 })
 
-function sendTextAtBeg(sender, text) {
+function sendTextAtBeg(text) {
 	let messageData = {text: text}
 	request({
 		url: "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX",
 		qs : {access_token: token},
 		method: "POST",
 		json: {
-			recipient: {id: sender},
+			recipient: {},
 			message : messageData,
 		}
 	}, function(error, response, body) {
@@ -94,5 +91,10 @@ app.listen(process.env.PORT || 8000, function(){
   },
   "message": {
     "text": "hello, world!"
+  }
+}' "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"*/
+/*curl -X GET -H "Content-Type: application/json" -d '{
+  "recipient": {
+    "id": "100012039937613"
   }
 }' "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"*/
