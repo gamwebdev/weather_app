@@ -18,7 +18,7 @@ app.get('/webhook/', function(req, res) {
 	res.send("Wrong token")
 })
 
-let token = "EAAIIIUtJFa8BAMbY45UB4ZB8cQBGAC9AUI7YIIwsP0yhJwuMx0Shu9mTm3Fy2rC9z0CD4RrYmDZBKAbEXrB2NIlrJGzqFx9mONHLpxUyF3jj1UmI9KXuTaObwCGPdifaOuZCFA7ZAhFVTB3TGaadmUAQhKJJtmspvMuPcus4Fp0Yh1ACwFCH"
+let token = "EAAIIIUtJFa8BAFzEfV3FwGKXNXRdIZAKfpyhy1lXR4pyKnfVZCZBxJ3dZAsVYKlD0sffhu82mZClkXcTUvCq05OfcoTBnzpLRyWpih2ybQZBcXogh2tUZAeYkGNi9aLPRgh3OC0lBa93dihyeetOcKoQsMDtB64TsGeknCxEBN73bGqu6Hf0xod"
 
 app.post('/webhook/', function(req, res) {
 	let messaging_events = req.body.entry[0].messaging
@@ -36,7 +36,7 @@ app.post('/webhook/', function(req, res) {
 function sendText(sender, text) {
 	let messageData = {text: text}
 	request({
-		url: "https://graph.facebook.com/v2.6/me/messages",
+		url: "https://graph.facebook.com/v2.6/me/subscribed_apps?subscribed_fields=publisher_subscriptions&access_token=${EAAIIIUtJFa8BAFzEfV3FwGKXNXRdIZAKfpyhy1lXR4pyKnfVZCZBxJ3dZAsVYKlD0sffhu82mZClkXcTUvCq05OfcoTBnzpLRyWpih2ybQZBcXogh2tUZAeYkGNi9aLPRgh3OC0lBa93dihyeetOcKoQsMDtB64TsGeknCxEBN73bGqu6Hf0xod}",
 		qs : {access_token: token},
 		method: "POST",
 		json: {
@@ -62,4 +62,4 @@ app.listen(process.env.PORT || 8000, function(){
 // curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAIIIUtJFa8BACkmuWFZBrrcP6xm7jqE29r57ZCOH6PSMi1O3zfEwiuF6UGvVJ9iju5EZBYgzoatLY8aYdGT7JiotylTJZCwPmYc0bU3K7DfaViLOZCuRJJj5ZBJspQzgVn28qRaJKlAEDRDlHTuTS1El4DwOFKG55rQaZCRRFepV7hXc2w0X8p"
 //EAAIIIUtJFa8BAMbY45UB4ZB8cQBGAC9AUI7YIIwsP0yhJwuMx0Shu9mTm3Fy2rC9z0CD4RrYmDZBKAbEXrB2NIlrJGzqFx9mONHLpxUyF3jj1UmI9KXuTaObwCGPdifaOuZCFA7ZAhFVTB3TGaadmUAQhKJJtmspvMuPcus4Fp0Yh1ACwFCH"
 //curl -X POST "https://graph.facebook.com/v3.3/me/subscribed_apps?subscribed_fields=publisher_subscriptions&access_token=EAAIIIUtJFa8BACkmuWFZBrrcP6xm7jqE29r57ZCOH6PSMi1O3zfEwiuF6UGvVJ9iju5EZBYgzoatLY8aYdGT7JiotylTJZCwPmYc0bU3K7DfaViLOZCuRJJj5ZBJspQzgVn28qRaJKlAEDRDlHTuTS1El4DwOFKG55rQaZCRRFepV7hXc2w0X8p"
-//curl -X POST "https://graph.facebook.com/v3.3/me/subscribed_apps?subscribed_fields=publisher_subscriptions&access_token=EAAIIIUtJFa8BAE3BHiVgUjQJNZBy1VYRTM9aQNcOTvZAWgZCXHJ1BUsDbgjzCg5GQQ2sHsmjMRPBn34PZAq1Edt3jAQZC0jR4RWr5HJPzqi25K2zEOZAPX9chMLoyoPgbEm7lZAsnomKvsikYNn8nRZBjMOGfhRohShpmpZBQbNj8mjZBroRU88Yz6"
+//curl -X POST "https://graph.facebook.com/v3.3/me/subscribed_apps?subscribed_fields=publisher_subscriptions&access_token=EAAIIIUtJFa8BAFzEfV3FwGKXNXRdIZAKfpyhy1lXR4pyKnfVZCZBxJ3dZAsVYKlD0sffhu82mZClkXcTUvCq05OfcoTBnzpLRyWpih2ybQZBcXogh2tUZAeYkGNi9aLPRgh3OC0lBa93dihyeetOcKoQsMDtB64TsGeknCxEBN73bGqu6Hf0xod"
