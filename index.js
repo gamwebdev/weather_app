@@ -19,7 +19,10 @@ app.get('/webhook/', function(req, res) {
 		sendTextAtBeg(text);
 		//res.send(req.query['hub.challenge'])
 	}
-	res.send("Wrong token")
+
+	let text = "Enter Your name:";
+	sendTextAtBeg(text);
+	//res.send("Wrong token")
 })
 
 app.post('/webhook/', function(req, res) {
