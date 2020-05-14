@@ -11,6 +11,14 @@ app.get('/', function(req, res){
 	res.send("Hi");
 });
 
-app.listen(8000, function(){
+app.get('/webhook/', function(req, res) {
+	if (req.query['hub.verify_token'] === "blondiebytes") {
+		res.send(req.query['hub.challenge'])
+	}
+	res.send("Wrong token")
+})
+
+
+app.listen(process.env.PORT || 8000, function(){
 	console.log("Server Running");
 });
