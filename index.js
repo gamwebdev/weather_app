@@ -21,10 +21,12 @@ app.get('/webhook/', function(req, res) {
 let token = "EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
 
 let x = 0;
+let temperature;
 
 app.post('/webhook/', function(req, res) {
 
 	if(x == 0){
+		++x;
 		let messaging_events = req.body.entry[0].messaging
 		let event = messaging_events[0]
 		let sender = event.sender.id
@@ -32,17 +34,19 @@ app.post('/webhook/', function(req, res) {
 			let text = "Enter your name:"
 			sendText(sender, text)
 		}
-		x++;
+		
 	}else{
 		let city = "Toronto";
 		let temp = getTemperature(city);
-
+		temp.then(function(results){
+			temperature = results;
+		});
 		let messaging_events = req.body.entry[0].messaging
 		let event = messaging_events[0]
 		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
-			sendText(sender, "" + text + " Today's temperature is : " + temp)
+			sendText(sender, "" + text + " Today's temperature is : " + temperature)
 		}
 	}
 	
