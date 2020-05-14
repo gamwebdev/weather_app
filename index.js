@@ -21,7 +21,7 @@ app.get('/webhook/', function(req, res) {
 let token = "EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
 
 let x = 0;
-let temp = 50;
+
 app.post('/webhook/', function(req, res) {
 
 	if(x == 0){
@@ -34,6 +34,9 @@ app.post('/webhook/', function(req, res) {
 		}
 		x++;
 	}else{
+		let city = Toronto;
+		let temp = getTemperature(city);
+
 		let messaging_events = req.body.entry[0].messaging
 		let event = messaging_events[0]
 		let sender = event.sender.id
@@ -47,6 +50,18 @@ app.post('/webhook/', function(req, res) {
 	res.sendStatus(200)
 })
 
+async function getTemperature(city) {
+
+        let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=271d1234d3f497eed5b1d80a07b3fcd1`;
+
+        let response_body = await request(url);
+
+        let weather_json = JSON.parse(response_body);
+
+        let temp = Math.round(weather_json.main.temp)
+
+    return temp;
+}
 
 function sendText(sender, text) {
 	let messageData = {text: text}
