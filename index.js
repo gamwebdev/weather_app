@@ -47,7 +47,7 @@ function sendTextAtBeg(sender, text) {
 	request({
 		url: "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX",
 		qs : {access_token: token},
-		method: "GET",
+		method: "POST",
 		json: {
 			recipient: {id: sender},
 			message : messageData,
