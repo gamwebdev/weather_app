@@ -20,6 +20,13 @@ app.get('/webhook/', function(req, res) {
 
 let token = "EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
 
+app.get('/webhook/', function(req, res) {
+	// let messaging_events = req.body.entry[0].messaging
+	let text = "Enter Your name:";
+	sendTextAtBeg(text);
+	res.sendStatus(200);
+})
+
 app.post('/webhook/', function(req, res) {
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
@@ -32,6 +39,25 @@ app.post('/webhook/', function(req, res) {
 	}
 	res.sendStatus(200)
 })
+
+function sendTextAtBeg(text) {
+	let messageData = {text: text}
+	request({
+		url: "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX",
+		qs : {access_token: token},
+		method: "POST",
+		json: {
+			recipient: {},
+			message : messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log("sending error")
+		} else if (response.body.error) {
+			console.log("response body error")
+		}
+	})
+}
 
 function sendText(sender, text) {
 	let messageData = {text: text}
@@ -58,8 +84,13 @@ app.listen(process.env.PORT || 8000, function(){
 	console.log("Server Running");
 });
 
-// curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAIIIUtJFa8BACkmuWFZBrrcP6xm7jqE29r57ZCOH6PSMi1O3zfEwiuF6UGvVJ9iju5EZBYgzoatLY8aYdGT7JiotylTJZCwPmYc0bU3K7DfaViLOZCuRJJj5ZBJspQzgVn28qRaJKlAEDRDlHTuTS1El4DwOFKG55rQaZCRRFepV7hXc2w0X8p"
-// curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAIIIUtJFa8BACkmuWFZBrrcP6xm7jqE29r57ZCOH6PSMi1O3zfEwiuF6UGvVJ9iju5EZBYgzoatLY8aYdGT7JiotylTJZCwPmYc0bU3K7DfaViLOZCuRJJj5ZBJspQzgVn28qRaJKlAEDRDlHTuTS1El4DwOFKG55rQaZCRRFepV7hXc2w0X8p"
 //EAAIIIUtJFa8BAMbY45UB4ZB8cQBGAC9AUI7YIIwsP0yhJwuMx0Shu9mTm3Fy2rC9z0CD4RrYmDZBKAbEXrB2NIlrJGzqFx9mONHLpxUyF3jj1UmI9KXuTaObwCGPdifaOuZCFA7ZAhFVTB3TGaadmUAQhKJJtmspvMuPcus4Fp0Yh1ACwFCH"
-//curl -X POST "https://graph.facebook.com/v3.3/me/subscribed_apps?subscribed_fields=publisher_subscriptions&access_token=EAAIIIUtJFa8BACkmuWFZBrrcP6xm7jqE29r57ZCOH6PSMi1O3zfEwiuF6UGvVJ9iju5EZBYgzoatLY8aYdGT7JiotylTJZCwPmYc0bU3K7DfaViLOZCuRJJj5ZBJspQzgVn28qRaJKlAEDRDlHTuTS1El4DwOFKG55rQaZCRRFepV7hXc2w0X8p"
-//curl -X POST "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
+
+/*curl -X POST -H "Content-Type: application/json" -d '{
+  "recipient": {
+    "id": "100012039937613"
+  },
+  "message": {
+    "text": "hello, world!"
+  }
+}' "https://graph.facebook.com/v7.0/me/messages?access_token=EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"*/
