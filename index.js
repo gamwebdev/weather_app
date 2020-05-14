@@ -20,8 +20,6 @@ app.get('/webhook/', function(req, res) {
 
 let token = "EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
 
-let
-
 app.post('/webhook/', function(req, res) {
 	let messaging_events = req.body.entry[0].messaging
 	let event = messaging_events[0]
