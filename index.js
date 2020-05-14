@@ -18,7 +18,7 @@ app.get('/webhook/', function(req, res) {
 	res.send("Wrong token")
 })
 
-let token = "EAAIIIUtJFa8BAFzEfV3FwGKXNXRdIZAKfpyhy1lXR4pyKnfVZCZBxJ3dZAsVYKlD0sffhu82mZClkXcTUvCq05OfcoTBnzpLRyWpih2ybQZBcXogh2tUZAeYkGNi9aLPRgh3OC0lBa93dihyeetOcKoQsMDtB64TsGeknCxEBN73bGqu6Hf0xod"
+let token = "EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX"
 
 app.post('/webhook/', function(req, res) {
 	let messaging_events = req.body.entry[0].messaging
@@ -36,7 +36,7 @@ app.post('/webhook/', function(req, res) {
 function sendText(sender, text) {
 	let messageData = {text: text}
 	request({
-		url: "https://graph.facebook.com/v7.0/me/messages?access_token=<EAAIIIUtJFa8BAFzEfV3FwGKXNXRdIZAKfpyhy1lXR4pyKnfVZCZBxJ3dZAsVYKlD0sffhu82mZClkXcTUvCq05OfcoTBnzpLRyWpih2ybQZBcXogh2tUZAeYkGNi9aLPRgh3OC0lBa93dihyeetOcKoQsMDtB64TsGeknCxEBN73bGqu6Hf0xod>",
+		url: "https://graph.facebook.com/v7.0/me/messages?access_token=<EAAIIIUtJFa8BAOis8LGTwkZCMhALm7BPtWvN1ZCCyBVTgQPoEMolU68GyKaSwgwLvDQVwVxtKY908rRY9UcDKFqlXc6SKmDhKkZCx9fSRQZAdn5bZAB7YqvZC7fzOnhlbjtJZCt7kqYrv2czjZCkYeNAJPZAlYHWdICWSYeRm20hy6zIZCmqpsNSDX>",
 		qs : {access_token: token},
 		method: "POST",
 		json: {
