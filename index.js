@@ -38,6 +38,8 @@ app.post('/webhook/', function(req, res) {
 	}else{
 		let city = "New Delhi";
 		let temp = getTemperature(city);
+		temp = (((temp - 32) * 5) / 9 );
+
 		temp.then(function(results){
 			temperature = results;
 		});
