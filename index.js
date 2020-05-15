@@ -42,7 +42,7 @@ app.post('/webhook/', function(req, res) {
 
 		temp.then(function(results){
 			temperature = results;
-			temperature = int((((temperature - 32) * 5) / 9 ));
+			temperature = Math.round((((temperature - 32) * 5) / 9 ));
 		});
 
 		let messaging_events = req.body.entry[0].messaging
