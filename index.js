@@ -50,9 +50,9 @@ app.post('/webhook/', function(req, res) {
 				let text = event.message.text
 				sendText(sender, "" + text + " Today's temperature is : " + temperature)
 			}
-			
+			x=0;
 		});
-		x=0;
+		
 		
 		
 	}
