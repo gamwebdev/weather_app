@@ -38,10 +38,11 @@ app.post('/webhook/', function(req, res) {
 	}else{
 		let city = "New Delhi";
 		let temp = getTemperature(city);
-		temp = (((temp - 32) * 5) / 9 );
+		
 
 		temp.then(function(results){
 			temperature = results;
+			temperature = (((temperature - 32) * 5) / 9 );
 		});
 		let messaging_events = req.body.entry[0].messaging
 		let event = messaging_events[0]
