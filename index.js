@@ -42,15 +42,16 @@ app.post('/webhook/', function(req, res) {
 
 		temp.then(function(results){
 			temperature = results;
-			temperature = (((temperature - 32) * 5) / 9 );
+			temperature = int((((temperature - 32) * 5) / 9 ));
+			let messaging_events = req.body.entry[0].messaging
+			let event = messaging_events[0]
+			let sender = event.sender.id
+			if (event.message && event.message.text) {
+				let text = event.message.text
+				sendText(sender, "" + text + " Today's temperature is : " + temperature)
+			}
 		});
-		let messaging_events = req.body.entry[0].messaging
-		let event = messaging_events[0]
-		let sender = event.sender.id
-		if (event.message && event.message.text) {
-			let text = event.message.text
-			sendText(sender, "" + text + " Today's temperature is : " + temperature)
-		}
+		
 	}
 	
 
